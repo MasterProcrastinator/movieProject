@@ -11,6 +11,7 @@ var Country: String
 var Director: String
 var Metascore: String
 var Ratings: [Rating]
+var Year: String
 }
 
 struct Rating: Codable{
@@ -49,6 +50,9 @@ class ViewController: UIViewController {
                     if let movieObj = try?
                        JSONDecoder().decode(Movie.self, from: data!){
                         print(movieObj.Actors)
+                        DispatchQueue.main.async{
+                            self.ghostLabel.text = "\(movieObj.Year)"
+                        }
                         for r in movieObj.Ratings{
                             print("\(r.Source)  \(r.Value)")
                         }
@@ -59,14 +63,14 @@ class ViewController: UIViewController {
                     }
                         
                         
-                        if let y = jsonObj.value(forKey: "Ghost") as? NSDictionary{
+                   //     if let y = jsonObj.value(forKey: "Ghost") as? NSDictionary{
                 
-                           if let ghost = y.value(forKey: "Year") as? Int{
-                                DispatchQueue.main.async{
-                                    self.ghostLabel.text = "\(y)"
-                                }
-                            }
-                        }
+                   //        if let ghost = y.value(forKey: "Year") as? Int{
+                    //            DispatchQueue.main.async{
+                     //               self.ghostLabel.text = "\(y)"
+                   //             }
+                   //         }
+                   //     }
                         
                         
                         
